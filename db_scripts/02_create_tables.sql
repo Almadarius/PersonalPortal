@@ -48,6 +48,8 @@ CREATE TABLE [dbo].[Platform](
 ) ON [PRIMARY]
 GO
 
+ALTER TABLE [dbo].[Platform] ADD  CONSTRAINT [DF_Platform_PlatformId]  DEFAULT (newid()) FOR [PlatformId]
+GO
 
 CREATE TABLE [dbo].[ResourceCategory](
 	[ResourceCategoryId] [uniqueidentifier] NOT NULL,
@@ -58,6 +60,9 @@ CREATE TABLE [dbo].[ResourceCategory](
 	[ResourceCategoryId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[ResourceCategory] ADD  CONSTRAINT [DF_ResourceCategory_ResourceCategoryId]  DEFAULT (newid()) FOR [ResourceCategoryId]
 GO
 
 CREATE TABLE [dbo].[ResourceType](
@@ -71,13 +76,7 @@ CREATE TABLE [dbo].[ResourceType](
 ) ON [PRIMARY]
 GO
 
-
-
-/****** Object:  Table [dbo].[Resource]    Script Date: 19/12/2019 08:43:07 p. m. ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
+ALTER TABLE [dbo].[ResourceType] ADD  CONSTRAINT [DF_ResourceType_ResourceTypeId]  DEFAULT (newid()) FOR [ResourceTypeId]
 GO
 
 CREATE TABLE [dbo].[Resource](
@@ -95,6 +94,9 @@ CREATE TABLE [dbo].[Resource](
 	[ResourceId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Resource] ADD  CONSTRAINT [DF_Resource_ResourceId]  DEFAULT (newid()) FOR [ResourceId]
 GO
 
 ALTER TABLE [dbo].[Resource]  WITH CHECK ADD  CONSTRAINT [FK_Resource_Platform] FOREIGN KEY([PlatformId])
