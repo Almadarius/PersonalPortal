@@ -10,7 +10,6 @@ D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\bin\Debug\n
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\net6.0\PersonalPortal.API.csproj.AssemblyReference.cache
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\net6.0\PersonalPortal.API.GeneratedMSBuildEditorConfig.editorconfig
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\net6.0\PersonalPortal.API.AssemblyInfoInputs.cache
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\net6.0\PersonalPortal.API.AssemblyInfo.cs
@@ -25,3 +24,4 @@ D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\n
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\net6.0\ref\PersonalPortal.API.dll
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\net6.0\PersonalPortal.API.pdb
 D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\net6.0\PersonalPortal.API.genruntimeconfig.cache
+D:\Code\Almadar\PersonalPortal\src\PersonalPortal\PersonalPortal.API\obj\Debug\net6.0\PersonalPortal.API.csproj.AssemblyReference.cache
