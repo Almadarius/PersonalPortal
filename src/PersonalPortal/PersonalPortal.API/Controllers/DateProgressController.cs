@@ -8,27 +8,20 @@ namespace PersonalPortal.API.Controllers
     public class DateProgressController : ControllerBase
     {
         [HttpGet]
-        [Route("YearToDate")]
         public double YearToDate(int decimals = 2)
-        {
-            var startDate = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
-            var endDate = new DateTime(DateTime.Now.Year, 12, 31, 23, 59, 59);
-            var totalSeconds = (endDate - startDate).TotalSeconds;            
-            var diff = endDate - DateTime.Now;
-            var remaining = diff.TotalSeconds / totalSeconds * 100;
-            var progress = Math.Round(100 - remaining, decimals);
+        { 
+            double remaining = 0;            
+            int currentYear = DateTime.Now.Year;
+            int daysInYear = DateTime.IsLeapYear(currentYear) ? 366 : 365;            
 
-            return progress;
-        }
+            var totalHours = daysInYear * 24;
+            var totalMinutes = totalHours * 60;
+            var totalSeconds = totalMinutes * 60;
 
-        [HttpGet]
-        [Route("ProgressToDate")]
-        public double ProgressToDate(DateTime startDate, DateTime endDate, int decimals = 2)
-        {
-            var totalDiff = endDate - startDate;
-            var totalSeconds = totalDiff.TotalSeconds;
-            var diff = endDate - DateTime.Now;
-            var remaining = diff.TotalSeconds / totalSeconds * 100;
+            DateTime endOfYear = new DateTime(DateTime.Now.Year, 12, 31, 23, 59, 59);
+            var diff = endOfYear - DateTime.Now;
+
+            remaining = diff.TotalSeconds / totalSeconds * 100;
             var progress = Math.Round(100 - remaining, decimals);
 
             return progress;
