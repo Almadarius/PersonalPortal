@@ -3,6 +3,8 @@ using PersonalPortal.Models.Models;
 
 namespace PersonalPortal.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ContentController : Controller
     {
         /// <summary>
@@ -11,8 +13,8 @@ namespace PersonalPortal.API.Controllers
         /// <param name="medium"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("Medium/Create")]
-        public async Task<IActionResult> RegisterContentMedium([FromBody] ContentMedium medium)
+        [Route("Category/Create")]
+        public async Task<IActionResult> RegisterContentCategory([FromBody] ContentCategory category)
         {
             var result = 0;
 
@@ -24,10 +26,19 @@ namespace PersonalPortal.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("Medium/GetAll")]
-        public async Task<IActionResult> GetAllMediums()
+        [Route("Category/GetAll")]
+        public async Task<IActionResult> GetAllContentCategories()
         { 
-            var result = new List<ContentMedium>();
+            var result = new List<ContentCategory>();
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("Category/Get/{id}")]
+        public async Task<IActionResult> GetContentCategoryById(int id)
+        { 
+            var result = new ContentCategory();
 
             return Ok(result);
         }
@@ -38,10 +49,10 @@ namespace PersonalPortal.API.Controllers
         /// <param name="filter"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("Medium/Get/{name}")]
-        public async Task<IActionResult> GetMedium(string filter)
+        [Route("Category/Get/{name}")]
+        public async Task<IActionResult> GetContentCategoryByName(string filter)
         { 
-            var result = new ContentMedium();
+            var result = new List<ContentCategory>();
 
             return Ok(result);
         }
@@ -52,10 +63,10 @@ namespace PersonalPortal.API.Controllers
         /// <param name="medium"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Medium/Update/{id}")]
-        public async Task<IActionResult> UpdateMedium([FromBody] ContentMedium medium)
+        [Route("Category/Update/{id}")]
+        public async Task<IActionResult> UpdateContentCategory([FromBody] ContentCategory category)
         {
-            var result = medium;
+            var result = category;
 
             return Ok(result);
         }
@@ -66,8 +77,8 @@ namespace PersonalPortal.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("Medium/Delete/{id}")]
-        public async Task<IActionResult> DeleteMedium(int id)
+        [Route("Category/Delete/{id}")]
+        public async Task<IActionResult> DeleteContentCategory(int id)
         {
             var result = false;
 
