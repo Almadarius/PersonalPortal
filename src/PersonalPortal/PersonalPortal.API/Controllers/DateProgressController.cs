@@ -8,7 +8,7 @@ namespace PersonalPortal.API.Controllers
     public class DateProgressController : ControllerBase
     {
         [HttpGet]
-        public double YearToDate(int decimals = 2)
+        public IActionResult YearToDate(int decimals = 2)
         {                      
             int currentYear = DateTime.Now.Year;
             int daysInYear = DateTime.IsLeapYear(currentYear) ? 366 : 365;            
@@ -23,11 +23,11 @@ namespace PersonalPortal.API.Controllers
             double remaining = diff.TotalSeconds / totalSeconds * 100;
             var progress = Math.Round(100 - remaining, decimals);
 
-            return progress;
+            return Ok(progress);
         }
 
         [HttpGet]
-        public double ProgressToDate(DateTime startDate, DateTime endDate, int decimals = 2)
+        public IActionResult ProgressToDate(DateTime startDate, DateTime endDate, int decimals = 2)
         { 
             var diff = endDate - startDate;
             var current = endDate - DateTime.Now;
@@ -35,7 +35,7 @@ namespace PersonalPortal.API.Controllers
             double remaining = current.TotalSeconds / diff.TotalSeconds * 100;
             var progress = Math.Round(100 - remaining, decimals);
 
-            return progress;
+            return Ok(progress);
         }
     }
 }
