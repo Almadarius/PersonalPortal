@@ -8,6 +8,7 @@ namespace PersonalPortal.API.Controllers
     public class DateProgressController : ControllerBase
     {
         [HttpGet]
+        [Route("/YearToDate")]
         public IActionResult YearToDate(int decimals = 2)
         {                      
             int currentYear = DateTime.Now.Year;
@@ -27,6 +28,7 @@ namespace PersonalPortal.API.Controllers
         }
 
         [HttpGet]
+        [Route("/PeriodProgress")]
         public IActionResult ProgressToDate(DateTime startDate, DateTime endDate, int decimals = 2)
         { 
             var diff = endDate - startDate;
