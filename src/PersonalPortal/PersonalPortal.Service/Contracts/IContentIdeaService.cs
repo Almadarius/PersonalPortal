@@ -10,6 +10,6 @@ namespace PersonalPortal.Service.Contracts
         Task<IActionResult> GetIdeaByName(string filter);
         Task<IActionResult> GetIdeaById(int id);
         Task<IActionResult> UpdateContentIdea(ContentIdea idea);
-        Task<IActionResult> DeleteContentIdea(int id);        
+        Task<bool> DeleteContentIdea(int id);        
     }
 }

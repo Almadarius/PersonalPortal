@@ -11,6 +11,6 @@ namespace PersonalPortal.Service.Contracts
         Task<IActionResult> GetInfoByCategoryId(int categoryId);
         Task<IActionResult> GetInfoByMediumId(int categoryId);
         Task<IActionResult> UpdateContentIdeaCategoryMedium(ContentIdeaCategoryMedium oldIdea, ContentIdeaCategoryMedium newIdea);
-        Task<IActionResult> DeleteContentIdeaCategoryMedium(ContentIdeaCategoryMedium ideaCategoryMedium);
+        Task<bool> DeleteContentIdeaCategoryMedium(ContentIdeaCategoryMedium ideaCategoryMedium);
     }
 }

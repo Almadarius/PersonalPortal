@@ -10,6 +10,6 @@ namespace PersonalPortal.Service.Contracts
         Task<IActionResult> GetCategoryByName(string filter);
         Task<IActionResult> GetCategoryById(int id);
         Task<IActionResult> UpdateCategory(ContentCategory category);
-        Task<IActionResult> DeleteCategory(int id);
+        Task<bool> DeleteCategory(int id);
     }
 }

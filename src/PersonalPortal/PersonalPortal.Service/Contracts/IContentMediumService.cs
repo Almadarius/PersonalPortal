@@ -10,6 +10,6 @@ namespace PersonalPortal.Service.Contracts
         Task<IActionResult> GetMediumByName(string filter);
         Task<IActionResult> GetMediumById(int id);
         Task<IActionResult> UpdateMedium(ContentMedium medium);
-        Task<IActionResult> DeleteMedium(int id);
+        Task<bool> DeleteMedium(int id);
     }
 }
