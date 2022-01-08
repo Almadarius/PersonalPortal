@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace PersonalPortal.Models.Models
 {
-    public partial class BulletPoint
+    public partial class JobBulletPoint
     {
-        public int BulletPointId { get; set; }
+        public int JobBulletPointId { get; set; }
         public int JobId { get; set; }
         public string BulletPointDescription { get; set; } = null!;
 

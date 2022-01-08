@@ -7,6 +7,7 @@ namespace PersonalPortal.Models.Models
     {
         public Resume()
         {
+            ContactInfos = new HashSet<ContactInfo>();
             EducationInfos = new HashSet<EducationInfo>();
             Interests = new HashSet<Interest>();
             Jobs = new HashSet<Job>();
@@ -17,7 +18,9 @@ namespace PersonalPortal.Models.Models
         public string ResumeName { get; set; } = null!;
         public string? ResumeDescription { get; set; }
         public bool IsLatestVersion { get; set; }
+        public string ResumeSummary { get; set; } = null!;
 
+        public virtual ICollection<ContactInfo> ContactInfos { get; set; }
         public virtual ICollection<EducationInfo> EducationInfos { get; set; }
         public virtual ICollection<Interest> Interests { get; set; }
         public virtual ICollection<Job> Jobs { get; set; }

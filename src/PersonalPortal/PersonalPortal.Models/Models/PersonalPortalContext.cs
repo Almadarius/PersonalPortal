@@ -16,7 +16,8 @@ namespace PersonalPortal.Models.Models
         {
         }
 
-        public virtual DbSet<BulletPoint> BulletPoints { get; set; } = null!;
+        public virtual DbSet<ContactInfo> ContactInfos { get; set; } = null!;
+        public virtual DbSet<ContactInfoType> ContactInfoTypes { get; set; } = null!;
         public virtual DbSet<ContentCategory> ContentCategories { get; set; } = null!;
         public virtual DbSet<ContentIdea> ContentIdeas { get; set; } = null!;
         public virtual DbSet<ContentIdeaCategoryMedium> ContentIdeaCategoryMedia { get; set; } = null!;
@@ -24,6 +25,7 @@ namespace PersonalPortal.Models.Models
         public virtual DbSet<EducationInfo> EducationInfos { get; set; } = null!;
         public virtual DbSet<Interest> Interests { get; set; } = null!;
         public virtual DbSet<Job> Jobs { get; set; } = null!;
+        public virtual DbSet<JobBulletPoint> JobBulletPoints { get; set; } = null!;
         public virtual DbSet<Plan> Plans { get; set; } = null!;
         public virtual DbSet<Platform> Platforms { get; set; } = null!;
         public virtual DbSet<Project> Projects { get; set; } = null!;
@@ -49,19 +51,36 @@ namespace PersonalPortal.Models.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BulletPoint>(entity =>
+            modelBuilder.Entity<ContactInfo>(entity =>
             {
-                entity.HasKey(e => new { e.BulletPointId, e.JobId });
+                entity.ToTable("ContactInfo");
 
-                entity.ToTable("BulletPoint");
+                entity.Property(e => e.ContactInfoId).ValueGeneratedNever();
 
-                entity.Property(e => e.BulletPointDescription).IsUnicode(false);
+                entity.Property(e => e.ContactInfoDescription)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.Job)
-                    .WithMany(p => p.BulletPoints)
-                    .HasForeignKey(d => d.JobId)
+                entity.HasOne(d => d.ContactInfoType)
+                    .WithMany(p => p.ContactInfos)
+                    .HasForeignKey(d => d.ContactInfoTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_BulletPoint_Job");
+                    .HasConstraintName("FK_ContactInfo_ContactInfoType");
+            });
+
+            modelBuilder.Entity<ContactInfoType>(entity =>
+            {
+                entity.ToTable("ContactInfoType");
+
+                entity.Property(e => e.ContactInfoTypeId).ValueGeneratedNever();
+
+                entity.Property(e => e.ContactInfoDescription)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ContactInfoName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<ContentCategory>(entity =>
@@ -183,6 +202,22 @@ namespace PersonalPortal.Models.Models
                 entity.Property(e => e.Location)
                     .HasMaxLength(70)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<JobBulletPoint>(entity =>
+            {
+                entity.HasKey(e => new { e.JobBulletPointId, e.JobId })
+                    .HasName("PK_BulletPoint");
+
+                entity.ToTable("JobBulletPoint");
+
+                entity.Property(e => e.BulletPointDescription).IsUnicode(false);
+
+                entity.HasOne(d => d.Job)
+                    .WithMany(p => p.JobBulletPoints)
+                    .HasForeignKey(d => d.JobId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BulletPoint_Job");
             });
 
             modelBuilder.Entity<Plan>(entity =>
@@ -374,6 +409,21 @@ namespace PersonalPortal.Models.Models
                 entity.Property(e => e.ResumeName)
                     .HasMaxLength(70)
                     .IsUnicode(false);
+
+                entity.Property(e => e.ResumeSummary).IsUnicode(false);
+
+                entity.HasMany(d => d.ContactInfos)
+                    .WithMany(p => p.Resumes)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "ResumeContactInfo",
+                        l => l.HasOne<ContactInfo>().WithMany().HasForeignKey("ContactInfoId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_ResumeContactInfo_ContactInfo"),
+                        r => r.HasOne<Resume>().WithMany().HasForeignKey("ResumeId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_ResumeContactInfo_Resume"),
+                        j =>
+                        {
+                            j.HasKey("ResumeId", "ContactInfoId");
+
+                            j.ToTable("ResumeContactInfo");
+                        });
 
                 entity.HasMany(d => d.EducationInfos)
                     .WithMany(p => p.Resumes)

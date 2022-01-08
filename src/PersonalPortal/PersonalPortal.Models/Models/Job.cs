@@ -7,7 +7,7 @@ namespace PersonalPortal.Models.Models
     {
         public Job()
         {
-            BulletPoints = new HashSet<BulletPoint>();
+            JobBulletPoints = new HashSet<JobBulletPoint>();
             Resumes = new HashSet<Resume>();
         }
 
@@ -18,7 +18,7 @@ namespace PersonalPortal.Models.Models
         public string Location { get; set; } = null!;
         public string JobTitle { get; set; } = null!;
 
-        public virtual ICollection<BulletPoint> BulletPoints { get; set; }
+        public virtual ICollection<JobBulletPoint> JobBulletPoints { get; set; }
 
         public virtual ICollection<Resume> Resumes { get; set; }
     }

@@ -4,7 +4,7 @@ using PersonalPortal.Service.Contracts;
 
 namespace PersonalPortal.Service.Services
 {
-    public class ContentService : IContentService
+    public class ContentService
     {
     }
 }
