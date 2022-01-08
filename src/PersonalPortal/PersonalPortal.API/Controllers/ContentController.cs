@@ -19,6 +19,10 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("Medium/GetAll")]
         public IActionResult GetAllMediums()
@@ -28,6 +32,11 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Medium/Get/{name}")]
         public IActionResult GetMedium(string filter)
@@ -37,6 +46,10 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="medium"></param>
         [HttpPost]
         [Route("Medium/Update/{id}")]
         public IActionResult UpdateMedium([FromBody] ContentMedium medium)
@@ -46,9 +59,14 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("Medium/Delete/{id}")]
-        public IActionResult DeleteMedium(int id)
+        public async Task<IActionResult> DeleteMedium(int id)
         {
             var result = false;
 
