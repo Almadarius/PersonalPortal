@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PersonalPortal.Models.Models;
+﻿using PersonalPortal.Models.Models;
 using PersonalPortal.Service.Contracts;
 
 namespace PersonalPortal.Service.Services
@@ -30,41 +29,109 @@ namespace PersonalPortal.Service.Services
             }
             catch (InvalidOperationException ex)
             {
-                //logging
+                //TODO: logging
                 return result;
             }
             catch  (Exception ex)
             { 
-                //logging
+                //TODO: logging
                 return result;
             }
 
             return result;
         }
 
-        public Task<List<ContentCategory>> GetAllCategories()
+        public async Task<List<ContentCategory>> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return await Task.Run(() => context.ContentCategories.ToList());
         }
 
-        public Task<ContentCategory> GetCategoryById(int id)
+        public async Task<ContentCategory> GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            var category = new ContentCategory();
+
+            try
+            {
+                category = await Task.Run(() => context.ContentCategories.SingleOrDefault(cc => cc.ContentCategoryId == id));
+            }
+            catch (InvalidOperationException ex)
+            {
+                //TODO: logging
+                return category;
+            }
+            catch (Exception ex)
+            {
+                //TODO: logging
+                return category;
+            }
+
+            return category;
         }
 
-        public Task<List<ContentCategory>> GetCategoryByName(string filter)
+        public async Task<List<ContentCategory>> GetCategoryByName(string filter)
         {
-            throw new NotImplementedException();
+            var categories = new List<ContentCategory>();
+
+            try
+            {
+                categories = await Task.Run(() => context.ContentCategories.Where(cc => cc.ContentCategoryName.Contains(filter)).ToList());
+            }
+            catch (Exception ex)
+            {
+                //TODO: logging
+                return categories;
+            }
+
+            return categories;
         }
 
-        public Task<bool> RegisterContentCategory(ContentCategory category)
+        public async Task<bool> RegisterContentCategory(ContentCategory category)
         {
-            throw new NotImplementedException();
+            var result = false;
+            var registered = 0;
+
+            try
+            {
+                context.ContentCategories.Add(category);
+                registered = await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                //TODO: logging
+                return false;
+            }
+
+            return registered == 1;
+
         }
 
-        public Task<bool> UpdateCategory(ContentCategory category)
+        public bool UpdateCategory(ContentCategory originalCategory, ContentCategory newCategory)
+        { 
+            originalCategory.ContentCategoryName = newCategory.ContentCategoryName;
+            originalCategory.ContentCategoryDescription = newCategory.ContentCategoryDescription;
+            var updated = context.SaveChanges();
+
+            return updated == 1;
+        }
+
+        public async Task<bool> UpdateCategory(ContentCategory category)
         {
-            throw new NotImplementedException();
+            var result = false;
+            var updated = 0;
+
+            try
+            {
+                var cat = context.ContentCategories.SingleOrDefault(cc => cc.ContentCategoryId == category.ContentCategoryId);
+                var update = Task.Run(() => UpdateCategory(cat, category));
+                result = await update;
+            }
+            catch (Exception ex)
+            {
+                //TODO: logging
+                return result;
+            }
+
+            return result;
         }
     }
 }
