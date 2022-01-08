@@ -4,18 +4,7 @@ GO
 /****** Object:  Database [PersonalPortal]    Script Date: 19/12/2019 02:09:11 p. m. ******/
 DROP DATABASE IF EXISTS [PersonalPortal]
 
-CREATE DATABASE [PersonalPortal]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'PersonalPortal', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\PersonalPortal.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'PersonalPortal_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\PersonalPortal_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
-GO
-
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [PersonalPortal].[dbo].[sp_fulltext_database] @action = 'enable'
-end
+CREATE DATABASE [PersonalPortal] 
 GO
 
 ALTER DATABASE [PersonalPortal] SET ANSI_NULL_DEFAULT OFF 
