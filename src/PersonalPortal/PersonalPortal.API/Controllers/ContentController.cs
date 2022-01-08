@@ -6,7 +6,7 @@ namespace PersonalPortal.API.Controllers
     public class ContentController : Controller
     {
         [HttpPut]
-        [Route("CreateContentMedium")]
+        [Route("Medium/Create")]
         public IActionResult RegisterContentMedium([FromBody] ContentMedium medium)
         {
             var result = 0;
@@ -15,10 +15,19 @@ namespace PersonalPortal.API.Controllers
         }
 
         [HttpGet]
-        [Route("Mediums")]
+        [Route("Medium/GetAll")]
         public IActionResult GetAllMediums()
         { 
             var result = new List<ContentMedium>();
+
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("Medium/Delete/{id}")]
+        public IActionResult DeleteMedium(int id)
+        {
+            var result = false;
 
             return Ok(result);
         }
