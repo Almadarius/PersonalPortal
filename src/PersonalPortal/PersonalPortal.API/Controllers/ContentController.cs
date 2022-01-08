@@ -13,5 +13,14 @@ namespace PersonalPortal.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("Mediums")]
+        public IActionResult GetAllMediums()
+        { 
+            var result = new List<ContentMedium>();
+
+            return Ok(result);
+        }
     }
 }
