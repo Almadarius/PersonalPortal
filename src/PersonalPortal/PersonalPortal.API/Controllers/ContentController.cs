@@ -12,7 +12,7 @@ namespace PersonalPortal.API.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("Medium/Create")]
-        public IActionResult RegisterContentMedium([FromBody] ContentMedium medium)
+        public async Task<IActionResult> RegisterContentMedium([FromBody] ContentMedium medium)
         {
             var result = 0;
 
@@ -25,7 +25,7 @@ namespace PersonalPortal.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Medium/GetAll")]
-        public IActionResult GetAllMediums()
+        public async Task<IActionResult> GetAllMediums()
         { 
             var result = new List<ContentMedium>();
 
@@ -39,7 +39,7 @@ namespace PersonalPortal.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Medium/Get/{name}")]
-        public IActionResult GetMedium(string filter)
+        public async Task<IActionResult> GetMedium(string filter)
         { 
             var result = new ContentMedium();
 
@@ -50,9 +50,10 @@ namespace PersonalPortal.API.Controllers
         /// 
         /// </summary>
         /// <param name="medium"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Medium/Update/{id}")]
-        public IActionResult UpdateMedium([FromBody] ContentMedium medium)
+        public async Task<IActionResult> UpdateMedium([FromBody] ContentMedium medium)
         {
             var result = medium;
 
