@@ -5,11 +5,11 @@ namespace PersonalPortal.Service.Contracts
 {
     public interface IContentCategoryService
     {
-        Task<IActionResult> RegisterContentCategory(ContentCategory category);
-        Task<IActionResult> GetAllCategories();
-        Task<IActionResult> GetCategoryByName(string filter);
-        Task<IActionResult> GetCategoryById(int id);
-        Task<IActionResult> UpdateCategory(ContentCategory category);
+        Task<bool> RegisterContentCategory(ContentCategory category);
+        Task<List<ContentCategory>> GetAllCategories();
+        Task<List<ContentCategory>> GetCategoryByName(string filter);
+        Task<ContentCategory> GetCategoryById(int id);
+        Task<bool> UpdateCategory(ContentCategory category);
         Task<bool> DeleteCategory(int id);
     }
 }
