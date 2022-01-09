@@ -18,7 +18,7 @@ namespace PersonalPortal.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="medium"></param>
+        /// <param name="category"></param>
         /// <returns></returns>
         [HttpPut]
         [Route("Category/Create")]
@@ -47,6 +47,11 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Category/Get/{id}")]
         public async Task<IActionResult> GetContentCategoryById(int id)
@@ -73,7 +78,7 @@ namespace PersonalPortal.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="medium"></param>
+        /// <param name="category"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("Category/Update/{id}")]
