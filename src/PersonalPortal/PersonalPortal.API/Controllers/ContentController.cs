@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PersonalPortal.Models.Models;
+using PersonalPortal.Service.Contracts;
 
 namespace PersonalPortal.API.Controllers
 {
@@ -7,6 +8,13 @@ namespace PersonalPortal.API.Controllers
     [ApiController]
     public class ContentController : Controller
     {
+        private readonly IContentCategoryService _contentCategoryService;
+
+        public ContentController(IContentCategoryService contentCategoryService)
+        {
+            _contentCategoryService = contentCategoryService;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -15,8 +23,13 @@ namespace PersonalPortal.API.Controllers
         [HttpPut]
         [Route("Category/Create")]
         public async Task<IActionResult> RegisterContentCategory([FromBody] ContentCategory category)
-        {
-            var result = 0;
+        {            
+            if (category == null)
+            {
+                return BadRequest("A ContentCategory object is required");
+            }
+                
+            var result = await _contentCategoryService.RegisterContentCategory(category);
 
             return Ok(result);
         }

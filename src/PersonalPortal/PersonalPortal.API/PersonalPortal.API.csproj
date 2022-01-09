@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PersonalPortal.Models\PersonalPortal.Models.csproj" />
+    <ProjectReference Include="..\PersonalPortal.Service\PersonalPortal.Service.csproj" />
   </ItemGroup>
 
 </Project>
