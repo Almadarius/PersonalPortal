@@ -25,9 +25,7 @@ namespace PersonalPortal.API.Controllers
         public async Task<IActionResult> RegisterContentCategory([FromBody] ContentCategory category)
         {            
             if (category == null)
-            {
                 return BadRequest("A ContentCategory object is required");
-            }
                 
             var result = await _contentCategoryService.RegisterContentCategory(category);
 
@@ -39,10 +37,13 @@ namespace PersonalPortal.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("Category/GetAll")]
+        [Route("Category/GetAll")]        
         public async Task<IActionResult> GetAllContentCategories()
         { 
-            var result = new List<ContentCategory>();
+            var result = await _contentCategoryService.GetAllCategories();
+
+            if (result == null)
+                return NotFound("There are no categories");
 
             return Ok(result);
         }
@@ -55,8 +56,16 @@ namespace PersonalPortal.API.Controllers
         [HttpGet]
         [Route("Category/Get/{id}")]
         public async Task<IActionResult> GetContentCategoryById(int id)
-        { 
-            var result = new ContentCategory();
+        {
+            if (id < 1)            
+                return NotFound("Values for id start at 1");
+            
+
+            var result = _contentCategoryService.GetCategoryById(id);
+
+            if (result == null)
+                return NotFound("No category with the provided Id was found");
+
 
             return Ok(result);
         }
