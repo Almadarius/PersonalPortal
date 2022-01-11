@@ -2,7 +2,7 @@
 
 namespace PersonalPortal.Service.Contracts
 {
-    public interface IJobBulletPoint
+    public interface IJobBulletPointService
     {
         Task<bool> RegisterJobBulletPoint(JobBulletPoint jobBulletPoint);
         Task<List<JobBulletPoint>> GetAllJobBulletPoints();
