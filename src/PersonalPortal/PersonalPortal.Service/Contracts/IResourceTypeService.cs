@@ -2,7 +2,7 @@
 
 namespace PersonalPortal.Service.Contracts
 {
-    public interface IResourceType
+    public interface IResourceTypeService
     {
         Task<bool> RegisterResourceType(ResourceType resourceType);
         Task<List<ResourceType>> GetAllResourceTypes();
