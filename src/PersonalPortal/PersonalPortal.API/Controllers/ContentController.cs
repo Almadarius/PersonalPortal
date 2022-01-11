@@ -9,10 +9,17 @@ namespace PersonalPortal.API.Controllers
     public class ContentController : Controller
     {
         private readonly IContentCategoryService _contentCategoryService;
+        private readonly IContentMediumService _contentMediumService;
+        private readonly IContentIdeaService _contentIdeaService;
+        private readonly IContentIdeaCategoryMediumService _contentIdeaCategoryMediumService;
 
-        public ContentController(IContentCategoryService contentCategoryService)
+        public ContentController(IContentCategoryService contentCategoryService, IContentMediumService contentMediumService,
+                                 IContentIdeaService contentIdeaService, IContentIdeaCategoryMediumService contentIdeaCategoryMediumService)
         {
             _contentCategoryService = contentCategoryService;
+            _contentMediumService = contentMediumService;
+            _contentIdeaService = contentIdeaService;
+            _contentIdeaCategoryMediumService = contentIdeaCategoryMediumService;
         }
 
         /// <summary>
@@ -57,9 +64,9 @@ namespace PersonalPortal.API.Controllers
         [Route("Category/Get/{id}")]
         public async Task<IActionResult> GetContentCategoryById(int id)
         {
-            if (id < 1)            
+            if (id < 1)
                 return NotFound("Values for id start at 1");
-            
+
 
             var result = _contentCategoryService.GetCategoryById(id);
 
@@ -69,14 +76,13 @@ namespace PersonalPortal.API.Controllers
 
             return Ok(result);
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("Category/Get/{name}")]
+
         public async Task<IActionResult> GetContentCategoryByName(string filter)
         { 
             var result = new List<ContentCategory>();
