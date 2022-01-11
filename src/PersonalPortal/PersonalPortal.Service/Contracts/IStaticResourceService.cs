@@ -8,7 +8,7 @@ namespace PersonalPortal.Service.Contracts
         Task<List<StaticResource>> GetAllStaticResources();
         Task<List<StaticResource>> GetStaticResourceByName(string filter);
         Task<StaticResource> GetStaticResourceById(int id);
-        Task<bool> UpdateStaticResource(StaticResource category);
+        Task<bool> UpdateStaticResource(StaticResource staticResource);
         Task<bool> DeleteStaticResource(int id);
     }
 }
