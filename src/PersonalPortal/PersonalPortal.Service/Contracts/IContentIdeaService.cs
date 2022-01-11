@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PersonalPortal.Models.Models;
+﻿using PersonalPortal.Models.Models;
 
 namespace PersonalPortal.Service.Contracts
 {
