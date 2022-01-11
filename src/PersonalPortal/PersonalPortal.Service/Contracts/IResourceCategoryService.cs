@@ -2,7 +2,7 @@
 
 namespace PersonalPortal.Service.Contracts
 {
-    internal interface IResourceCategoryService
+    public interface IResourceCategoryService
     {
         Task<bool> RegisterResourceCategory(ResourceCategory resourceCategory);
         Task<List<ResourceCategory>> GetAllResourceCategories();
