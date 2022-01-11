@@ -5,10 +5,10 @@ namespace PersonalPortal.Service.Contracts
     public interface IContentMediumService
     {        
         Task<bool> RegisterContentMedium(ContentMedium medium);
-        Task<List<ContentMedium>> GetAllMediums();
-        Task<List<ContentMedium>> GetMediumByName(string filter);
-        Task<List<ContentMedium>> GetMediumById(int id);
-        Task<bool> UpdateMedium(ContentMedium medium);
-        Task<bool> DeleteMedium(int id);
+        Task<List<ContentMedium>> GetAllContentMediums();
+        Task<List<ContentMedium>> GetContentMediumByName(string filter);
+        Task<List<ContentMedium>> GetContentMediumById(int id);
+        Task<bool> UpdateContentMedium(ContentMedium medium);
+        Task<bool> DeleteContentMedium(int id);
     }
 }

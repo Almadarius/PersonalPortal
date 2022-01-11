@@ -8,7 +8,7 @@ namespace PersonalPortal.Service.Contracts
         Task<List<Platform>> GetAllPlatforms();
         Task<List<Platform>> GetSPlatformByName(string filter);
         Task<Platform> GetPlatformById(int id);
-        Task<bool> UpdatePlatform(StaticResource staticResource);
+        Task<bool> UpdatePlatform(Platform platform);
         Task<bool> DeletePlatform(int id);
     }
 }

@@ -10,17 +10,17 @@ namespace PersonalPortal.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentIdea>> GetAllIdeas()
+        public Task<List<ContentIdea>> GetAllContentIdeas()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentIdea>> GetIdeaById(int id)
+        public Task<List<ContentIdea>> GetContentIdeaById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentIdea>> GetIdeaByName(string filter)
+        public Task<List<ContentIdea>> GetContentIdeaByName(string filter)
         {
             throw new NotImplementedException();
         }

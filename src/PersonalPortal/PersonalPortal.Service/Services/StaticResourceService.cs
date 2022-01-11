@@ -30,7 +30,7 @@ namespace PersonalPortal.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateStaticResource(StaticResource category)
+        public Task<bool> UpdateStaticResource(StaticResource staticResource)
         {
             throw new NotImplementedException();
         }

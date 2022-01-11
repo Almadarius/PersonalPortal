@@ -5,22 +5,22 @@ namespace PersonalPortal.Service.Services
 {
     public class ContentMediumService : IContentMediumService
     {
-        public Task<bool> DeleteMedium(int id)
+        public Task<bool> DeleteContentMedium(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentMedium>> GetAllMediums()
+        public Task<List<ContentMedium>> GetAllContentMediums()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentMedium>> GetMediumById(int id)
+        public Task<List<ContentMedium>> GetContentMediumById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentMedium>> GetMediumByName(string filter)
+        public Task<List<ContentMedium>> GetContentMediumByName(string filter)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace PersonalPortal.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateMedium(ContentMedium medium)
+        public Task<bool> UpdateContentMedium(ContentMedium medium)
         {
             throw new NotImplementedException();
         }

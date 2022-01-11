@@ -10,22 +10,22 @@ namespace PersonalPortal.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentIdeaCategoryMedium>> GetAllIdeasCategoriesMedia()
+        public Task<List<ContentIdeaCategoryMedium>> GetAllContentIdeasCategoriesMedia()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentIdeaCategoryMedium>> GetInfoByCategoryId(int categoryId)
+        public Task<List<ContentIdeaCategoryMedium>> GetInfoByContentCategoryId(int categoryId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentIdeaCategoryMedium>> GetInfoByIdeaId(int ideaId)
+        public Task<List<ContentIdeaCategoryMedium>> GetInfoByContentIdeaId(int ideaId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentIdeaCategoryMedium>> GetInfoByMediumId(int categoryId)
+        public Task<List<ContentIdeaCategoryMedium>> GetInfoByContentMediumId(int categoryId)
         {
             throw new NotImplementedException();
         }
