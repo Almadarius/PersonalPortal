@@ -8,15 +8,15 @@ namespace PersonalPortal.Service.Services
     {
         PersonalPortalContext context = new PersonalPortalContext();
 
-        public bool DeleteCategory(ContentCategory category)
+        public bool DeleteContentCategory(ContentCategory contentCategory)
         { 
-            context.ContentCategories.Remove(category);
+            context.ContentCategories.Remove(contentCategory);
             var result = context.SaveChanges();
 
             return result == 1;
         }
 
-        public async Task<bool> DeleteCategory(int id)
+        public async Task<bool> DeleteContentCategory(int id)
         {
             var result = false;
             var category = new ContentCategory();
@@ -24,7 +24,7 @@ namespace PersonalPortal.Service.Services
             try
             {
                 category = context.ContentCategories.SingleOrDefault(cc => cc.ContentCategoryId == id);
-                var delete = Task.Run(() => DeleteCategory(category));
+                var delete = Task.Run(() => DeleteContentCategory(category));
                 result = await delete;
             }
             catch (InvalidOperationException ex)
@@ -41,12 +41,12 @@ namespace PersonalPortal.Service.Services
             return result;
         }
 
-        public async Task<List<ContentCategory>> GetAllCategories()
+        public async Task<List<ContentCategory>> GetAllContentCategories()
         {
             return await Task.Run(() => context.ContentCategories.ToList());
         }
 
-        public async Task<ContentCategory> GetCategoryById(int id)
+        public async Task<ContentCategory> GetContentCategoryById(int id)
         {
             var category = new ContentCategory();
 
@@ -68,7 +68,7 @@ namespace PersonalPortal.Service.Services
             return category;
         }
 
-        public async Task<List<ContentCategory>> GetCategoryByName(string filter)
+        public async Task<List<ContentCategory>> GetContentCategoryByName(string filter)
         {
             var categories = new List<ContentCategory>();
 
@@ -85,14 +85,14 @@ namespace PersonalPortal.Service.Services
             return categories;
         }
 
-        public async Task<bool> RegisterContentCategory(ContentCategory category)
+        public async Task<bool> RegisterContentCategory(ContentCategory contentCategory)
         {
             var result = false;
             var registered = 0;
 
             try
             {
-                context.ContentCategories.Add(category);
+                context.ContentCategories.Add(contentCategory);
                 registered = await context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -105,24 +105,24 @@ namespace PersonalPortal.Service.Services
 
         }
 
-        public bool UpdateCategory(ContentCategory originalCategory, ContentCategory newCategory)
+        public bool UpdateContentCategory(ContentCategory originalContentCategory, ContentCategory newContentCategory)
         { 
-            originalCategory.ContentCategoryName = newCategory.ContentCategoryName;
-            originalCategory.ContentCategoryDescription = newCategory.ContentCategoryDescription;
+            originalContentCategory.ContentCategoryName = newContentCategory.ContentCategoryName;
+            originalContentCategory.ContentCategoryDescription = newContentCategory.ContentCategoryDescription;
             var updated = context.SaveChanges();
 
             return updated == 1;
         }
 
-        public async Task<bool> UpdateCategory(ContentCategory category)
+        public async Task<bool> UpdateContentCategory(ContentCategory contentCategory)
         {
             var result = false;
             var updated = 0;
 
             try
             {
-                var cat = context.ContentCategories.SingleOrDefault(cc => cc.ContentCategoryId == category.ContentCategoryId);
-                var update = Task.Run(() => UpdateCategory(cat, category));
+                var cat = context.ContentCategories.SingleOrDefault(cc => cc.ContentCategoryId == contentCategory.ContentCategoryId);
+                var update = Task.Run(() => UpdateContentCategory(cat, contentCategory));
                 result = await update;
             }
             catch (Exception ex)
