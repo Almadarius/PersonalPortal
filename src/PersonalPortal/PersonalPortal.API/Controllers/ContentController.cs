@@ -47,7 +47,7 @@ namespace PersonalPortal.API.Controllers
         [Route("Category/GetAll")]        
         public async Task<IActionResult> GetAllContentCategories()
         { 
-            var result = await _contentCategoryService.GetAllCategories();
+            var result = await _contentCategoryService.GetAllContentCategories();
 
             if (result == null)
                 return NotFound("There are no categories");
@@ -68,7 +68,7 @@ namespace PersonalPortal.API.Controllers
                 return NotFound("Values for id start at 1");
 
 
-            var result = _contentCategoryService.GetCategoryById(id);
+            var result = _contentCategoryService.GetContentCategoryById(id);
 
             if (result == null)
                 return NotFound("No category with the provided Id was found");
