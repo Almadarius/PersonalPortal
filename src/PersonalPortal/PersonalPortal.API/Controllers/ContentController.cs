@@ -68,7 +68,7 @@ namespace PersonalPortal.API.Controllers
                 return NotFound("Values for id start at 1");
 
 
-            var result = _contentCategoryService.GetContentCategoryById(id);
+            var result = await _contentCategoryService.GetContentCategoryById(id);
 
             if (result == null)
                 return NotFound("No category with the provided Id was found");
@@ -82,10 +82,19 @@ namespace PersonalPortal.API.Controllers
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-
+        [HttpGet]
+        [Route("Category/Get/{filter}")]
         public async Task<IActionResult> GetContentCategoryByName(string filter)
         { 
             var result = new List<ContentCategory>();
+
+            if (filter == null)
+                return BadRequest("Filter cannot be empty");
+
+            result = await _contentCategoryService.GetContentCategoryByName(filter);
+
+            if (result == null)
+                return NotFound("No category matching the filter was found");
 
             return Ok(result);
         }
@@ -99,7 +108,13 @@ namespace PersonalPortal.API.Controllers
         [Route("Category/Update/{id}")]
         public async Task<IActionResult> UpdateContentCategory([FromBody] ContentCategory category)
         {
-            var result = category;
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _contentCategoryService.UpdateContentCategory(category);
+
+            if (result == false)
+                return StatusCode(500, "Update failed");
 
             return Ok(result);
         }
@@ -113,7 +128,13 @@ namespace PersonalPortal.API.Controllers
         [Route("Category/Delete/{id}")]
         public async Task<IActionResult> DeleteContentCategory(int id)
         {
-            var result = false;
+            if (id < 1)
+                return NotFound("Values for id start at 1");
+
+            var result = await _contentCategoryService.DeleteContentCategory(id);
+
+            if (result == false)
+                return StatusCode(500, "Delete failed");
 
             return Ok(result);
         }
