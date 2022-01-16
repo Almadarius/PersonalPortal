@@ -22,11 +22,7 @@ namespace PersonalPortal.API.Controllers
             _contentIdeaCategoryMediumService = contentIdeaCategoryMediumService;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="category"></param>
-        /// <returns></returns>
+        #region ContentCategory
         [HttpPut]
         [Route("Category/Create")]
         public async Task<IActionResult> RegisterContentCategory([FromBody] ContentCategory category)
@@ -39,10 +35,6 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         [Route("Category/GetAll")]        
         public async Task<IActionResult> GetAllContentCategories()
@@ -55,11 +47,6 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         [HttpGet]
         [Route("Category/Get/{id}")]
         public async Task<IActionResult> GetContentCategoryById(int id)
@@ -77,11 +64,6 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
         [HttpGet]
         [Route("Category/Get/{filter}")]
         public async Task<IActionResult> GetContentCategoryByName(string filter)
@@ -99,11 +81,6 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="category"></param>
-        /// <returns></returns>
         [HttpPost]
         [Route("Category/Update/{id}")]
         public async Task<IActionResult> UpdateContentCategory([FromBody] ContentCategory category)
@@ -119,11 +96,6 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         [HttpDelete]
         [Route("Category/Delete/{id}")]
         public async Task<IActionResult> DeleteContentCategory(int id)
@@ -138,5 +110,24 @@ namespace PersonalPortal.API.Controllers
 
             return Ok(result);
         }
+        #endregion
+
+        #region ContentMedium
+
+        [HttpPut]
+        public async Task<IActionResult> RegisterContentMedium([FromBody] ContentMedium contentMedium)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _contentMediumService.RegisterContentMedium(contentMedium);
+
+            if (result == false)
+                return StatusCode(500, "Was not able to register the medium");
+
+            return Ok(result);
+        }
+
+        #endregion
     }
 }
