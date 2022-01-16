@@ -41,7 +41,7 @@ namespace PersonalPortal.API.Controllers
         { 
             var result = await _contentCategoryService.GetAllContentCategories();
 
-            if (result == null)
+            if (result == null || result.Count == 0)
                 return NotFound("There are no categories");
 
             return Ok(result);
@@ -115,6 +115,7 @@ namespace PersonalPortal.API.Controllers
         #region ContentMedium
 
         [HttpPut]
+        [Route("Medium/Register")]
         public async Task<IActionResult> RegisterContentMedium([FromBody] ContentMedium contentMedium)
         {
             if (!ModelState.IsValid)
@@ -124,6 +125,18 @@ namespace PersonalPortal.API.Controllers
 
             if (result == false)
                 return StatusCode(500, "Was not able to register the medium");
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("Medium/GetAll")]
+        public async Task<IActionResult> GetAllMedia()
+        { 
+            var result = await _contentMediumService.GetAllContentMediums();
+
+            if (result == null || result.Count == 0)
+                return NotFound("No Media was found");
 
             return Ok(result);
         }
