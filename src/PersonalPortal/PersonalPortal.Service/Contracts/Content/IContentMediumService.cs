@@ -7,7 +7,7 @@ namespace PersonalPortal.Service.Contracts
         Task<bool> RegisterContentMedium(ContentMedium medium);
         Task<List<ContentMedium>> GetAllContentMediums();
         Task<List<ContentMedium>> GetContentMediumByName(string filter);
-        Task<List<ContentMedium>> GetContentMediumById(int id);
+        Task<ContentMedium> GetContentMediumById(int id);
         Task<bool> UpdateContentMedium(ContentMedium medium);
         Task<bool> DeleteContentMedium(int id);
     }

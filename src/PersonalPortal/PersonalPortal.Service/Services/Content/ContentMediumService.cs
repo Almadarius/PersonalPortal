@@ -15,7 +15,7 @@ namespace PersonalPortal.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<ContentMedium>> GetContentMediumById(int id)
+        public Task<ContentMedium> GetContentMediumById(int id)
         {
             throw new NotImplementedException();
         }

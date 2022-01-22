@@ -86,8 +86,7 @@ namespace PersonalPortal.Service.Services
         }
 
         public async Task<bool> RegisterContentCategory(ContentCategory contentCategory)
-        {
-            var result = false;
+        {            
             var registered = 0;
 
             try
@@ -102,7 +101,6 @@ namespace PersonalPortal.Service.Services
             }
 
             return registered == 1;
-
         }
 
         public bool UpdateContentCategory(ContentCategory originalContentCategory, ContentCategory newContentCategory)
@@ -116,8 +114,7 @@ namespace PersonalPortal.Service.Services
 
         public async Task<bool> UpdateContentCategory(ContentCategory contentCategory)
         {
-            var result = false;
-            var updated = 0;
+            var result = false;            
 
             try
             {

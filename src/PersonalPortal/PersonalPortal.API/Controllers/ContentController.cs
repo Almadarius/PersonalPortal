@@ -131,7 +131,7 @@ namespace PersonalPortal.API.Controllers
 
         [HttpGet]
         [Route("Medium/GetAll")]
-        public async Task<IActionResult> GetAllMedia()
+        public async Task<IActionResult> GetAllContentMedia()
         { 
             var result = await _contentMediumService.GetAllContentMediums();
 
@@ -141,6 +141,80 @@ namespace PersonalPortal.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("Medium/Get/{id}")]
+        public async Task<IActionResult> GetContentMediumById(int id)
+        {
+            if (id < 1)
+                return NotFound("The value of Id should be greater than 0");
+
+            var result = await _contentMediumService.GetContentMediumById(id);
+
+            if (result == null)
+                return StatusCode(500, "Was not able to obtain the Medium");
+
+            return Ok(result);
+
+        }
+
+        [HttpGet]
+        [Route("Medium/Get/{filter}")]
+        public async Task<IActionResult> GetContentMediumByName(string filter)
+        {
+            if (filter == null)
+                return BadRequest("Filter cannot be null");
+
+            var result = await _contentMediumService.GetContentMediumByName(filter);
+
+            if (result == null)
+                return StatusCode(500, "Was not able to obtain the Medium");
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("Medium/Update")]
+        public async Task<IActionResult> UpdateContentMedium([FromBody] ContentMedium contentMedium)
+        {
+            if (contentMedium == null)
+                return BadRequest("Medium cannot be null");
+
+            var result = await _contentMediumService.UpdateContentMedium(contentMedium);
+
+            if (result == false)
+                return StatusCode(500, "Was not able to update that Medium");
+
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("Medium/Delete/{id}")]
+        public async Task<IActionResult> DeleteContentMedium(int id)
+        {
+            if (id < 1)
+                return BadRequest("The value of Id must be greater than 0");
+
+            var result = await _contentMediumService.DeleteContentMedium(id);
+
+            if (result == false)
+                return StatusCode(500, "Was not able to delete the Medium");
+
+            return Ok(result);
+        }
+
         #endregion
+
+        #region ContentIdea
+
+
+
+        #endregion
+
+        #region ContentIdeaCategoryMedium
+
+
+
+        #endregion
+
     }
 }
